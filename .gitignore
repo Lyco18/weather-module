@@ -1,0 +1,7 @@
+/a
+/.bin
+/build
+/config/apiKey.php
+/vendor
+memory::
+composer.lock

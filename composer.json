@@ -1,0 +1,20 @@
+{
+    "name" : "lyco/weather",
+    "description": "A weather module for ramverk1.",
+    "license": "MIT",
+    "minimum-stability": "beta",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Anax\\": "src/",
+            "lyco\\": "src/"
+        }
+    },
+    "require": {
+        "anax/anax-ramverk1-me": "^1.0.0",
+        "opencage/geocode": "^2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    }
+}
