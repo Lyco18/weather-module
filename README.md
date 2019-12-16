@@ -4,9 +4,9 @@ Weather module for ANAX framework
 Install with composer
 ``composer require lyco/weather``
 
-API-Keys
-=========
-Change "xxxxx" in 'config/api.php' to your personalized api key.
+#### API-Keys
+Change "xxxxx" in "config/api.php" to your personalized api keys.
 
 ``rsync -av vendor/lyco/weather/view/ view/``
+
 ``rsync -av vendor/lyco/weather/config/ config/``
