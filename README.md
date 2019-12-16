@@ -7,6 +7,8 @@ Install with composer
 #### API-Keys
 Change "xxxxx" in "config/api.php" to your personalized api keys.
 
-``rsync -av vendor/lyco/weather/view/ view/``
+#### Move into folders
+Move following files from module to your framework
 
-``rsync -av vendor/lyco/weather/config/ config/``
+``rsync -av vendor/lyco/weather/view/ view/
+rsync -av vendor/lyco/weather/config/ config/``
