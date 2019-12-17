@@ -11,7 +11,7 @@ class IpValidator
      */
     public function toJson($ip) : array
     {
-        $apiKey = require "../config/apiKey.php";
+        $apiKey = require "../config/api.php";
 
         if (filter_var($ip, FILTER_VALIDATE_IP)) {
             $valid = "true";

@@ -11,7 +11,7 @@ class GeoTag
      */
     public function getWeather($when, $lat, $long) : array
     {
-        $apiKey = require "../config/apiKey.php";
+        $apiKey = require "../config/api.php";
         $now = time();
         $dates = array();
         $weather = array();

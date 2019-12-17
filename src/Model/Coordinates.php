@@ -5,7 +5,7 @@ class Coordinates
 {
     public function getCoordinates(String $search) : array
     {
-        $apiKeyOpenCage = require "../config/apiKey.php";
+        $apiKeyOpenCage = require "../config/api.php";
 
         if (is_string($search)) {
             $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$apiKeyOpenCage["opencage"]["key"]}"));
