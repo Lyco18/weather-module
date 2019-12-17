@@ -1,5 +1,5 @@
 {
-    "name" : "lyco/weather",
+    "name" : "lyco/weather-module",
     "description": "A weather module for ramverk1.",
     "license": "MIT",
     "minimum-stability": "beta",

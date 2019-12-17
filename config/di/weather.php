@@ -6,7 +6,7 @@ return [
 
     // Services to add to the container.
     "services" => [
-        "weather" => [
+        "weather-module" => [
             // Is the service shared, true or false
             // Optional, default is true
             "shared" => true,
