@@ -11,6 +11,6 @@ Change "xxxxx" in "config/api.php" to your personalized api keys.
 Move following files from module to your framework
 
 ```
-rsync -av vendor/lyco/weather/view/ view/
-rsync -av vendor/lyco/weather/config/ config/
+rsync -av vendor/lyco/weather/view ./
+rsync -av vendor/lyco/weather/config ./
 ```
