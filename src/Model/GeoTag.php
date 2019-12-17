@@ -58,7 +58,7 @@ class GeoTag
      */
     public function getWeatherMultiCurl($when, $lat, $long) : array
     {
-        $apiKey = require "../config/apiKey.php";
+        $apiKey = require "../config/api.php";
         $dates = [];
         $now = time();
 
