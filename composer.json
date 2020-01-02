@@ -6,11 +6,11 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Anax\\": "src/",
-            "lyco\\": "src/"
+            "Anax\\": "src/"
         }
     },
     "require": {
+        "php": "^7",
         "anax/anax-ramverk1-me": "^1.0.0",
         "opencage/geocode": "^2.1"
     },

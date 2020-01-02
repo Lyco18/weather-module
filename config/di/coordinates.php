@@ -6,7 +6,7 @@ return [
 
     // Services to add to the container.
     "services" => [
-        "weather-module" => [
+        "coordinates" => [
             // Is the service shared, true or false
             // Optional, default is true
             "shared" => true,
@@ -21,8 +21,8 @@ return [
             "callback" => function () {
                 $cfg = $this->get("configuration");
                 $config = $cfg->load("api.php");
-                $weather = new \Anax\Model\GeoTag($config["config"]["darksky"]);
-                return $weather;
+                $coordinates = new \Anax\Model\Coordinates($config["config"]["opencage"]);
+                return $coordinates;
             }
         ],
     ],

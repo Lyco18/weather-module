@@ -25,14 +25,14 @@ class GeoControllerTest extends TestCase
         $di = $this->di;
 
         // Setup the controller
-        $this->controller = new GeoController();
-        $this->controller->setDI($this->di);
+        $controller = new GeoController();
+        $controller->setDI($di);
 
-        //start controller index action
+        //test controller index action IP address
         $this->di->get("request")->setGet("search", "8.8.8.8");
         $this->di->get("request")->setGet("when", "past");
         $this->di->get("request")->setGet("submit", "Check Weather");
-        $res = $this->controller->indexAction();
+        $res = $controller->indexAction();
 
         // assertions
         $this->assertIsObject($res);

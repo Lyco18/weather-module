@@ -10,4 +10,5 @@
 return [
     //ANAX_APP_PATH . "/config",
     ANAX_INSTALL_PATH . "/config",
+    ANAX_INSTALL_PATH . "/test/config",
 ];

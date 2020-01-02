@@ -6,7 +6,7 @@ return [
 
     // Services to add to the container.
     "services" => [
-        "weather-module" => [
+        "ip" => [
             // Is the service shared, true or false
             // Optional, default is true
             "shared" => true,
@@ -19,9 +19,10 @@ return [
             // Create the service, load its configuration (if any)
             // and set it up.
             "callback" => function () {
-                $weather = new \Anax\Model\geoTag();
-
-                return $weather;
+                $cfg = $this->get("configuration");
+                $config = $cfg->load("api.php");
+                $ip = new \Anax\Model\IpValidator($config["config"]["ipstack"]);
+                return $ip;
             }
         ],
     ],
