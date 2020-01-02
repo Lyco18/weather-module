@@ -3,12 +3,23 @@ namespace Anax\Model;
 
 class Coordinates
 {
+    private $config;
+    /**
+     * Constructor, allow for $di to be injected.
+     *
+     * @param Array $config for api key 
+     */
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
     public function getCoordinates(String $search) : array
     {
-        $apiKeyOpenCage = require "../config/api.php";
+        $apiKeyOpenCage = $config["coordinates"];
 
         if (is_string($search)) {
-            $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$apiKeyOpenCage["opencage"]["key"]}"));
+            $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$apiKeyOpenCage["key"]}"));
             $results = $details->results;
             if (isset($results[0]->geometry)) {
                 $valid = "Valid";

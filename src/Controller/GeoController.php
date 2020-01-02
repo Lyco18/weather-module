@@ -39,13 +39,13 @@ class GeoController implements ContainerInjectableInterface
 
         if (filter_var($search, FILTER_VALIDATE_IP)) {
             $valid = "IP";
-            $validator = new \Anax\Model\IpValidator;
+            $validator = new \Anax\Model\IpValidator("ip");
             $res = $validator->toJson($search);
 
             $lat = $res["lat"];
             $long = $res["long"];
         } else {
-            $coordinates = new \Anax\Model\Coordinates;
+            $coordinates = new \Anax\Model\Coordinates("coordinates");
             $cord = $coordinates->getCoordinates($search);
             $valid = $cord["valid"];
 

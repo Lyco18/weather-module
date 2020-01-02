@@ -4,6 +4,17 @@ namespace Anax\Model;
 
 class IpValidator
 {
+    private $config;
+    /**
+     * Constructor, allow for $di to be injected.
+     *
+     * @param Array $config for api key
+     */
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
     /**
      *
      * Returns Array[valid, ip, ipv, domain], get used at view.
@@ -11,7 +22,7 @@ class IpValidator
      */
     public function toJson($ip) : array
     {
-        $apiKey = require "../config/api.php";
+        $apiKey = $config["ip"];
 
         if (filter_var($ip, FILTER_VALIDATE_IP)) {
             $valid = "true";
@@ -27,7 +38,7 @@ class IpValidator
             }
 
             $domain = gethostbyaddr($ip);
-            $details = json_decode(file_get_contents("http://api.ipstack.com/{$ip}?access_key={$apiKey["ipstack"]["key"]}"));
+            $details = json_decode(file_get_contents("http://api.ipstack.com/{$ip}?access_key={$apiKey["key"]}"));
 
             $lat = $details->latitude;
             $long = $details->longitude;
