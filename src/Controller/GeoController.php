@@ -65,15 +65,18 @@ class GeoController implements ContainerInjectableInterface
             if ($when == "past") {
                 $res = $geo->getWeatherMultiCurl("past", $lat, $long);
                 // $time = $res[0]["currently"]["time"];
+                $amount = count($res);
 
-                for ($i = 0; $i < count($res); $i++) {
+                for ($i = 0; $i < $amount; $i++) {
                     $time[] = (date('Y-m-d', $res[$i]["currently"]["time"]));
                     $weather[] = $res[$i]["currently"]["summary"];
                     $temp[] = round($res[$i]["currently"]["temperature"], 1);
                 }
             } else {
                 $res = $geo->getWeatherMultiCurl("future", $lat, $long);
-                for ($i = 0; $i < count($res); $i++) {
+                $amount = count($res);
+
+                for ($i = 0; $i < $amount; $i++) {
                     $time[] = (date('Y-m-d', $res[$i]["currently"]["time"]));
                     $weather[] = $res[$i]["currently"]["summary"];
                     $temp[] = round($res[$i]["currently"]["temperature"], 1);
