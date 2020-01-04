@@ -40,7 +40,7 @@ class GeoController implements ContainerInjectableInterface
         if (filter_var($search, FILTER_VALIDATE_IP)) {
             $valid = "IP";
             $ipverify = $this->di->get("ipverify");
-            $validator = new \Anax\Model\IpValidator((array)$ipverify);
+            $validator = new \Anax\Model\IpValidator($ipverify);
             $res = $validator->getIp($search);
 
             $lat = $res["lat"];
