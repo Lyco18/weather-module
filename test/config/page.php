@@ -10,7 +10,7 @@ return [
     // all the other views are rendered.
     "layout" => [
         "region" => "layout",
-        "template" => "test/config/layout.php",
+        "template" => "test/config/layout",
         "data" => [
             "title" => "Lydia",
             "baseTitle" => " | ramverk1",

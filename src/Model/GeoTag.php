@@ -3,6 +3,19 @@ namespace Anax\Model;
 
 class GeoTag
 {
+
+    private $config;
+
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
     /**
      *
      * @param $when -> 7 days in future, or 30 days in the past, $lat -> Latitude, $long -> Longitude
@@ -11,7 +24,6 @@ class GeoTag
      */
     public function getWeather($when, $lat, $long) : array
     {
-        $apiKey = require "../config/api.php";
         $now = time();
         $dates = array();
         $weather = array();
@@ -33,7 +45,7 @@ class GeoTag
         }
 
         for ($i = 0; $i < count($dates); $i++) {
-            $details =      json_decode(file_get_contents("https://api.darksky.net/forecast/{$apiKey["darksky"]["key"]}/{$lat},{$long},{$dates[$i]}?lang=sv&units=si"));
+            $details =      json_decode(file_get_contents("https://api.darksky.net/forecast/{$this->config}/{$lat},{$long},{$dates[$i]}?lang=sv&units=si"));
 
             $time[] = $details->currently->time;
             $weather[] = $details->currently->summary;
@@ -58,7 +70,6 @@ class GeoTag
      */
     public function getWeatherMultiCurl($when, $lat, $long) : array
     {
-        $apiKey = require "../config/api.php";
         $dates = [];
         $now = time();
 
@@ -76,7 +87,7 @@ class GeoTag
             }
         }
 
-        $url = "https://api.darksky.net/forecast/{$apiKey["darksky"]["key"]}/{$lat},{$long}";
+        $url = "https://api.darksky.net/forecast/{$this->config->config}/{$lat},{$long}";
 
         $options = [
             CURLOPT_RETURNTRANSFER => true,

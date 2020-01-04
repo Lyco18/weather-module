@@ -7,19 +7,24 @@ class Coordinates
     /**
      * Constructor, allow for $di to be injected.
      *
-     * @param Array $config for api key 
+     * @param Array $config for api key
      */
     public function __construct($config)
     {
         $this->config = $config;
     }
 
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
     public function getCoordinates(String $search) : array
     {
-        $apiKeyOpenCage = $config["coordinates"];
+        $key = $this->config;
 
         if (is_string($search)) {
-            $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$apiKeyOpenCage["key"]}"));
+            $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$key}"));
             $results = $details->results;
             if (isset($results[0]->geometry)) {
                 $valid = "Valid";

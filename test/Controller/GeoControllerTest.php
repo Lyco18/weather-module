@@ -24,6 +24,23 @@ class GeoControllerTest extends TestCase
         // View helpers uses the global $di so it needs its value
         $di = $this->di;
 
+        //set config
+
+        $ipstack = [
+            "key" => "f122a5a957deda7370c00008cb3662bc"
+        ];
+        $coordinates = [
+            "key" => "4116e49f570d4b649b3bc280b0f0800c"
+        ];
+        $weatherModule = [
+            "key" => "c95cd34300afd4a28f1fd4144787c44d"
+        ];
+
+        $this->di->get("ipverify")->setConfig($ipstack["key"]);
+        $this->di->get("coordinates")->setConfig($coordinates["key"]);
+        $this->di->get("weather-module")->setConfig($weatherModule["key"]);
+
+
         // Setup the controller
         $controller = new GeoController();
         $controller->setDI($di);

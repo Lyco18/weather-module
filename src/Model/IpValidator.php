@@ -8,9 +8,14 @@ class IpValidator
     /**
      * Constructor, allow for $di to be injected.
      *
-     * @param Array $config for api key
+     * @param str $config api key
      */
     public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
+    public function setConfig($config)
     {
         $this->config = $config;
     }
@@ -20,10 +25,8 @@ class IpValidator
      * Returns Array[valid, ip, ipv, domain], get used at view.
      *
      */
-    public function toJson($ip) : array
+    public function getIp($ip) : array
     {
-        $apiKey = $config["ip"];
-
         if (filter_var($ip, FILTER_VALIDATE_IP)) {
             $valid = "true";
         } else {
@@ -37,9 +40,10 @@ class IpValidator
                 $ipv = "Ipv6";
             }
 
-            $domain = gethostbyaddr($ip);
-            $details = json_decode(file_get_contents("http://api.ipstack.com/{$ip}?access_key={$apiKey["key"]}"));
+            $key = implode($this->config);
+            $details = json_decode(file_get_contents("http://api.ipstack.com/{$ip}?access_key={$key}"));
 
+            $domain = gethostbyaddr($ip);
             $lat = $details->latitude;
             $long = $details->longitude;
             $country = $details->country_name;

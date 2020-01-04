@@ -31,7 +31,7 @@ class GeoController implements ContainerInjectableInterface
         //get page
         $page = $this->di->get("page");
         //name="ip"
-        if (isset($_GET['submit'])) {
+        if ($this->di->request->getGet("submit")) {
             $search = $this->di->request->getGet("search");
         } else {
             $search = $this->di->request->getServer("REMOTE_ADDR");
@@ -39,13 +39,15 @@ class GeoController implements ContainerInjectableInterface
 
         if (filter_var($search, FILTER_VALIDATE_IP)) {
             $valid = "IP";
-            $validator = new \Anax\Model\IpValidator("ip");
-            $res = $validator->toJson($search);
+            $ipverify = $this->di->get("ipverify");
+            $validator = new \Anax\Model\IpValidator((array)$ipverify);
+            $res = $validator->getIp($search);
 
             $lat = $res["lat"];
             $long = $res["long"];
         } else {
-            $coordinates = new \Anax\Model\Coordinates("coordinates");
+            $coordinatesObj = $this->di->get("coordinates");
+            $coordinates = new \Anax\Model\Coordinates($coordinatesObj);
             $cord = $coordinates->getCoordinates($search);
             $valid = $cord["valid"];
 
@@ -53,15 +55,16 @@ class GeoController implements ContainerInjectableInterface
             $long = $cord["long"];
         }
 
-        $geo = new \Anax\Model\GeoTag;
+        $weather = $this->di->get("weather-module");
+        $geo = new \Anax\Model\GeoTag($weather);
 
         $when = "";
         $weather = array();
         $temp = array();
         $time = array();
 
-        if (isset($_GET["when"])) {
-            $when = $_GET["when"];
+        if ($this->di->request->getGet("when")) {
+            $when = $this->di->request->getGet("when");
             if ($when == "past") {
                 $res = $geo->getWeatherMultiCurl("past", $lat, $long);
                 // $time = $res[0]["currently"]["time"];
