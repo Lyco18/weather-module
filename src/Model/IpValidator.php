@@ -40,7 +40,7 @@ class IpValidator
                 $ipv = "Ipv6";
             }
 
-            $key = implode($this->config);
+            $key = $this->config->config;
             $details = json_decode(file_get_contents("http://api.ipstack.com/{$ip}?access_key={$key}"));
 
             $domain = gethostbyaddr($ip);

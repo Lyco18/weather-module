@@ -21,7 +21,7 @@ class Coordinates
 
     public function getCoordinates(String $search) : array
     {
-        $key = $this->config;
+        $key = $this->config->config;
 
         if (is_string($search)) {
             $details = json_decode(file_get_contents("https://api.opencagedata.com/geocode/v1/json?q=$search&key={$key}"));
