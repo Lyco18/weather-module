@@ -11,7 +11,15 @@
     },
     "require": {
         "php": "^7",
-        "anax/anax-ramverk1-me": "^1.0.0",
+        "anax/commons": "^2.0.0@alpha",
+        "anax/configure": "^2.0.0@alpha",
+        "anax/controller": "^2.0.0@beta",
+        "anax/di": "^2.0.0@alpha",
+        "anax/page": "^2.0.0@beta",
+        "anax/request": "^2.0.0@beta",
+        "anax/response": "^2.0.0@beta",
+        "anax/view": "^2.0.0@beta",
+        "anax/url": "^2.0.0@alpha",
         "opencage/geocode": "^2.1"
     },
     "require-dev": {
