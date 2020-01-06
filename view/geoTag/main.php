@@ -2,8 +2,7 @@
 /**
  * Main content for geo tagging, weather checking.
  */
-namespace Anax\View
-?>
+namespace Anax\View ?>
 <html>
     <article>
         <h2>Weather Check</h2>
