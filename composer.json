@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "php": "^7",
+        "php": "^7.2",
         "anax/commons": "^2.0.0@alpha",
         "anax/configure": "^2.0.0@alpha",
         "anax/controller": "^2.0.0@beta",

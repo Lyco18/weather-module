@@ -49,9 +49,21 @@ class GeoControllerTest extends TestCase
         $this->di->get("request")->setGet("search", "8.8.8.8");
         $this->di->get("request")->setGet("when", "past");
         $this->di->get("request")->setGet("submit", "Check Weather");
-        $res = $controller->indexAction();
+        $ip = $controller->indexAction();
+
+        //test controller index action address
+        $this->di->get("request")->setGet("search", "brisbane");
+        $this->di->get("request")->setGet("when", "future");
+        $this->di->get("request")->setGet("submit", "Check Weather");
+        $address = $controller->indexAction();
+
+        //test controller index action server IP
+        $this->di->get("request")->setGet("search", "brisbane");
+        $this->di->get("request")->setGet("when", "future");
+        // $this->di->get("request")->setGet("submit", "Check Weather");
+        $server = $controller->indexAction();
 
         // assertions
-        $this->assertIsObject($res);
+        $this->assertIsObject($ip);
     }
 }
