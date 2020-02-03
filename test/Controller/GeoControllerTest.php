@@ -44,26 +44,24 @@ class GeoControllerTest extends TestCase
         // Setup the controller
         $controller = new GeoController();
         $controller->setDI($di);
-
-        //test controller index action IP address
+        
+        //test controller index action IP address past
         $this->di->get("request")->setGet("search", "8.8.8.8");
         $this->di->get("request")->setGet("when", "past");
         $this->di->get("request")->setGet("submit", "Check Weather");
         $ip = $controller->indexAction();
+        $body = $ip->getBody();
+        $this->assertContains('-122.07431030273', $body);
 
-        //test controller index action address
+        //test controller index action address future
         $this->di->get("request")->setGet("search", "brisbane");
         $this->di->get("request")->setGet("when", "future");
         $this->di->get("request")->setGet("submit", "Check Weather");
         $address = $controller->indexAction();
+        $body = $address->getBody();
+        $this->assertContains('153.0234991', $body);
 
-        //test controller index action server IP
-        $this->di->get("request")->setGet("search", "brisbane");
-        $this->di->get("request")->setGet("when", "future");
-        // $this->di->get("request")->setGet("submit", "Check Weather");
-        $server = $controller->indexAction();
-
-        // assertions
+        // other assertions
         $this->assertIsObject($ip);
     }
 }
